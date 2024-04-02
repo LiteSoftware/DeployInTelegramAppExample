@@ -1,0 +1,23 @@
+name: 'Android application builder'
+
+on: push
+  
+jobs:
+
+  buildApks:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    container:
+      image: javavirys/android:33
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build apks
+        run: ./gradlew assembleDebug
+          
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Apks
+          path:
+            app/build/outputs/apk
+          retention-days: 10
