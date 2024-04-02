@@ -18,10 +18,10 @@ jobs:
         run: ./gradlew assembleDebug
 
       - name: Send title message to telegram
-        run: curl --location 'https://udfsoft.com/api/v1/publisher/telegram/send' --header "$TOKEN_TELEGRAM_BOT_HEADER" --form 'chatId="-4183049998"' --form 'message="Task ${{ github.event.head_commit.message }}"' --form 'type="message"'
+        run: curl --location 'https://udfsoft.com/api/v1/publisher/telegram/send' --header "$TOKEN_TELEGRAM_BOT_HEADER" --form 'chatId="-1002064870798"' --form 'message="Task ${{ github.event.head_commit.message }}"' --form 'type="message"'
 
       - name: Deploy debug version
-        run: find ./app/build/outputs/apk/debug -name *.apk -exec curl --location 'https://udfsoft.com/api/v1/publisher/telegram/send' --header "$TOKEN_TELEGRAM_BOT_HEADER" --form 'file=@"{}"' --form 'chatId="-4183049998"' --form 'message="#DEBUG"' --form 'type="file"' \;
+        run: find ./app/build/outputs/apk/debug -name *.apk -exec curl --location 'https://udfsoft.com/api/v1/publisher/telegram/send' --header "$TOKEN_TELEGRAM_BOT_HEADER" --form 'file=@"{}"' --form 'chatId="-1002064870798"' --form 'message="#DEBUG"' --form 'type="file"' \;
           
       - name: Archive artifacts
         uses: actions/upload-artifact@v3
